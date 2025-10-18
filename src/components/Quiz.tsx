@@ -35,6 +35,12 @@ const Quiz: React.FC<QuizProps> = ({ questions, examTitle, onQuizComplete }) => 
     }
   };
 
+  const handlePrevious = () => {
+      if (currentQuestionIndex > 0) {
+          setCurrentQuestionIndex(currentQuestionIndex - 1);
+      }
+  };
+
   const handleNext = () => {
     advanceToNextQuestion();
   };
@@ -111,19 +117,29 @@ const Quiz: React.FC<QuizProps> = ({ questions, examTitle, onQuizComplete }) => 
         
         <div className="mt-8 flex justify-between items-center">
             <button
-                onClick={handleSkip}
-                className="px-8 py-3 bg-gray-600 text-white font-bold rounded-lg shadow-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0}
+                className="px-8 py-3 bg-gray-600 text-white font-bold rounded-lg shadow-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 disabled:bg-gray-700/50 disabled:text-gray-400 disabled:cursor-not-allowed"
             >
-                Skip <i className="fas fa-forward ml-2"></i>
+                <i className="fas fa-arrow-left mr-2"></i>
+                Previous
             </button>
-            <button
-                onClick={handleNext}
-                disabled={selectedAnswers[currentQuestionIndex] === undefined}
-                className="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-            >
-                {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Submit Quiz'}
-                <i className="fas fa-arrow-right ml-2"></i>
-            </button>
+            <div className="flex gap-4">
+                <button
+                    onClick={handleSkip}
+                    className="px-6 py-3 bg-gray-600 text-white font-bold rounded-lg shadow-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                >
+                    Skip <i className="fas fa-forward ml-2"></i>
+                </button>
+                <button
+                    onClick={handleNext}
+                    disabled={selectedAnswers[currentQuestionIndex] === undefined}
+                    className="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                >
+                    {currentQuestionIndex < questions.length - 1 ? 'Next' : 'Submit'}
+                    <i className="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
         </div>
       </div>
     </div>
