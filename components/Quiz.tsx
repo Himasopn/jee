@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Question } from '../types';
+import { formatText } from '../utils/textUtils';
 
 interface QuizProps {
   questions: Question[];
@@ -86,7 +87,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, examTitle, onQuizComplete }) => 
               />
             </div>
           )}
-          <h2 className="text-xl sm:text-2xl font-semibold mb-6 overflow-y-auto pr-2 max-h-48">{currentQuestion.question}</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-6 overflow-y-auto pr-2 max-h-48 bookish-text">{formatText(currentQuestion.question)}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentQuestion.options.map((option, index) => {
               const isSelected = selectedAnswers[currentQuestionIndex] === index;
@@ -94,14 +95,14 @@ const Quiz: React.FC<QuizProps> = ({ questions, examTitle, onQuizComplete }) => 
                 <button
                   key={index}
                   onClick={() => handleOptionSelect(index)}
-                  className={`w-full p-4 rounded-lg text-left transition-all duration-200 border-2 
+                  className={`w-full p-4 rounded-lg text-left transition-all duration-200 border-2 bookish-text 
                     ${isSelected 
                         ? 'bg-blue-500 border-blue-400 ring-2 ring-blue-300 text-white' 
                         : 'bg-gray-700 border-gray-600 hover:bg-gray-600 hover:border-blue-500'
                     }`}
                 >
                   <span className="font-bold mr-2">{String.fromCharCode(65 + index)}.</span>
-                  {option}
+                  {formatText(option)}
                 </button>
               );
             })}

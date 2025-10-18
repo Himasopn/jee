@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Question } from '../types';
+import { formatText } from '../utils/textUtils';
 
 interface ResultProps {
   score: number;
@@ -101,8 +102,8 @@ const Result: React.FC<ResultProps> = ({ score, totalQuestions, examTitle, onRes
                         return (
                             <div key={index} className="bg-gray-900 p-4 rounded-lg border border-gray-600">
                                 <div className="flex justify-between items-start mb-4">
-                                <p className="font-semibold flex-1 pr-4">
-                                    <span className="font-bold mr-2">Q{index + 1}.</span> {q.question}
+                                <p className="font-semibold flex-1 pr-4 bookish-text">
+                                    <span className="font-bold mr-2">Q{index + 1}.</span> {formatText(q.question)}
                                 </p>
                                 <span className={`font-bold text-lg whitespace-nowrap ml-4 px-3 py-1 rounded-md ${points > 0 ? 'bg-green-900/80' : points < 0 ? 'bg-red-900/80' : 'bg-yellow-900/80'} ${pointsColor}`}>
                                     {points > 0 ? `+${points}` : points} pts
@@ -130,8 +131,8 @@ const Result: React.FC<ResultProps> = ({ score, totalQuestions, examTitle, onRes
                                 }
                                 
                                 return (
-                                    <div key={optionIndex} className={`p-3 rounded-md border text-left flex justify-between items-center ${optionClass}`}>
-                                    <span>{String.fromCharCode(65 + optionIndex)}. {option}</span>
+                                    <div key={optionIndex} className={`p-3 rounded-md border text-left flex justify-between items-center bookish-text ${optionClass}`}>
+                                    <span>{String.fromCharCode(65 + optionIndex)}. {formatText(option)}</span>
                                     <span>
                                         {optionIndex === correctAnswer && <i className="fas fa-check text-green-400 ml-2"></i>}
                                         {optionIndex === userAnswer && !isCorrect && <i className="fas fa-times text-red-400 ml-2"></i>}

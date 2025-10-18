@@ -43,9 +43,10 @@ export const generateQuizQuestions = async (examType: ExamType): Promise<Questio
     3.  Each section must contain exactly 10 questions.
     4.  In each section, include 2-3 questions that require a diagram or graph. For these, you MUST format the question string exactly as follows: "[DIAGRAM] A clear, detailed, self-contained description of the diagram for an AI image generator. --- The actual question text that refers to the diagram."
         Example: "[DIAGRAM] A simple DC circuit with a 12V battery connected in series to a 2 Ohm resistor and a 4 Ohm resistor. --- What is the total current flowing through the circuit?"
-    5.  Ensure questions are distinct, not repetitive, and reflect the difficulty and style of the actual ${examType} exam.
-    6.  For each question, provide four distinct options and the 0-based index of the correct answer.
-    7.  Return the entire quiz as a single JSON array, with questions ordered by section (all Physics, then all Chemistry, then all Mathematics).
+    5.  For any mathematical or chemical expressions, use standard keyboard notation for fractions (e.g., '1/2'), exponents (e.g., 'x^2' or '10^-3'), and subscripts (e.g., 'H_2O').
+    6.  Ensure questions are distinct, not repetitive, and reflect the difficulty and style of the actual ${examType} exam.
+    7.  For each question, provide four distinct options and the 0-based index of the correct answer.
+    8.  Return the entire quiz as a single JSON array, with questions ordered by section (all Physics, then all Chemistry, then all Mathematics).
   `;
 
   try {
