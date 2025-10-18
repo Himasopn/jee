@@ -1,0 +1,5 @@
+{
+  "name": "JEE Mock Test Simulator",
+  "description": "An interactive web application that generates mock tests for JEE Mains and JEE Advanced exams using AI. Users can take a 30-question MCQ quiz and get their results instantly.",
+  "requestFramePermissions": []
+}
